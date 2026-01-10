@@ -26,7 +26,7 @@ def open_serial(port, baud):
         print(f"[serial] Impossibile aprire {port} : {e}")
         return None
 
-def format_line(rpm, gear, gear_dashboard, speed, truckBrand, truckName, engineRpmMax, fuel):
+def format_line(rpm, gear, gear_dashboard, speed, truckBrand, truckName, engineRpmMax, fuel, gears, gears_reverse):
     rpm_v = int(rpm or 0)
     gear_v = int(gear or 0)
     gear_dash_v = int(gear_dashboard or gear_v)
@@ -35,7 +35,9 @@ def format_line(rpm, gear, gear_dashboard, speed, truckBrand, truckName, engineR
     truckName_v = str(truckName)
     engineRpmMax_v = int(engineRpmMax)
     fuel_v = float(fuel)
-    return f"{rpm_v},{gear_v},{gear_dash_v},{speed_v:.1f},{truckBrand_v},{truckName_v},{engineRpmMax_v},{fuel_v:.1f}\n"
+    gears_v = int(gears)
+    gears_reverse_v = int(gears_reverse)
+    return f"{rpm_v},{gear_v},{gear_dash_v},{speed_v:.1f},{truckBrand_v},{truckName_v},{engineRpmMax_v},{fuel_v:.1f},{gears_v},{gears_reverse_v},\n"
 
 def main():
     try:
@@ -69,8 +71,10 @@ def main():
             truckBrand = data.get('truckBrand', "")
             engineRpmMax = data.get('engineRpmMax', 0)
             fuel = data.get('fuel', 0.0)
+            gears = data.get('gears', 0)
+            gears_reverse = data.get('gears_reverse', 0)
 
-            line = format_line(rpm, gear, gear_dashboard, speed, truckBrand, truckName, engineRpmMax, fuel)
+            line = format_line(rpm, gear, gear_dashboard, speed, truckBrand, truckName, engineRpmMax, fuel, gears, gears_reverse)
 
             if SEND_ON_CHANGE_ONLY:
                 if line != last_sent:
