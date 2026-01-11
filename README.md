@@ -11,6 +11,6 @@ Once it read these data, it does its elaboration and show it on the display. On 
 
 All the comments in the scripts are in Italian.
 
-Usage: build the Arduino setup and connect it to your PC, take the correct COM port and write it in the ets_2_arduino.py script, then start the script and, lastly, start the game.
+Usage: build the Arduino setup and connect it to your PC, take the correct COM port and write it in the config.xml file, then start the script and, lastly, start the game.
 
-Next update will envolve 8-segments displays to show the gears and so on, and I will make also an executable file instead of the .py script, as so as a config file to modify the COM port instead of doing it inside the script.
+Next update will envolve 8-segments displays to show the gears and so on, and I will make also an executable file instead of the .py script.

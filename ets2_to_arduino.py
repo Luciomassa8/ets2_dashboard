@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 import time
 import serial
-import serial.tools.list_ports
 import truck_telemetry as tt
+import xml.etree.ElementTree as ET
 
-SERIAL_PORT = 'COM9'
-BAUD = 115200
+tree = ET.parse("config.xml")
+root = tree.getroot()
+
+port = root.find("port").text
+baud = int(root.find("baud").text)
+
+# SERIAL_PORT = 'COM9'
+# BAUD = 115200
+SERIAL_PORT = port
+BAUD = baud
 POLL_HZ = 10
 RECONNECT_DELAY = 2.0
 SEND_ON_CHANGE_ONLY = False
