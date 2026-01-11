@@ -1,4 +1,4 @@
-# et2_dashboard
+# ets2_dashboard
 Dashboard for Euro Truck Simulator 2.
 
 Configuration: the ets_2_arduino.py script read data from the game using the scs-sdk-plugin available on "https://github.com/RenCloud/scs-sdk-plugin/tree/master" repo, then write it on the serial port on which Arduino is listening, then Arduino show the data on the OLED 0.96" I2C display.
