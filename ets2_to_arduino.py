@@ -56,16 +56,32 @@ def format_line(rpm, gear, gear_dashboard, speed_kmh,
         f"{int(gears_reverse)},\n"
     )
 
+
+# ------------------------------------------------------------
+# Telemetry initialization with retry
+# ------------------------------------------------------------
+def init_telemetry():
+    while True:
+        try:
+            tt.init()
+            print("[telemetry] Telemetria inizializzata.")
+            return
+        except Exception:
+            print("[telemetry] ETS2 non rilevato. In attesa...")
+            time.sleep(2)
+
+
 # ------------------------------------------------------------
 # MAIN LOOP
 # ------------------------------------------------------------
 def main():
     global running
 
-    try:
+    init_telemetry()
+    """ try:
         tt.init()
     except Exception as e:
-        print(f"[telemetry] Errore init wrapper: {e}")
+        print(f"[telemetry] Errore init wrapper: {e}") """
 
     ser = None
     last_sent = None
